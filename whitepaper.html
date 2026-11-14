@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Whitepaper — Euro Green (€GREEN)</title>
+    <link rel="icon" href="green_logo.png" />
+    <style>
+        :root { --bg-color: #030a05; --text-color: #E6F5EB; --neon-green: #00FF7F; --dark-green: #004d1a; --gold: #FFD700; --glass-bg: rgba(5, 20, 10, 0.7); --glass-border: rgba(0, 255, 127, 0.3); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg-color); color: var(--text-color); line-height: 1.6; padding-top: 80px; padding-bottom: 60px; }
+        body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, rgba(0, 255, 127, 0.05) 0%, transparent 60%); z-index: -1; pointer-events: none; }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+        header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(3, 10, 5, 0.9); backdrop-filter: blur(12px); z-index: 100; border-bottom: 1px solid var(--glass-border); padding: 12px 0; }
+        .header-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .logo { display: flex; align-items: center; gap: 8px; }
+        .logo img { height: 36px; border-radius: 50%; }
+        .logo-text { font-size: 20px; font-weight: 700; color: #fff; }
+        nav { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+        nav a { color: #8A94C8; text-decoration: none; font-size: 13px; font-weight: 600; transition: 0.3s; }
+        nav a:hover { color: var(--neon-green); }
+        nav a.active { color: var(--neon-green); border-bottom: 2px solid var(--neon-green); }
+        .btn-primary { background: linear-gradient(135deg, var(--neon-green), var(--dark-green)); color: #000; padding: 8px 20px; border-radius: 30px; font-weight: 800; text-decoration: none; transition: 0.3s; }
+        .btn-primary:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(0,255,127,0.4); }
+        
+        .wp-header { text-align: center; margin-bottom: 60px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .wp-header img { height: 80px; margin-bottom: 20px; border-radius: 50%; box-shadow: 0 0 30px rgba(0,255,127,0.3); }
+        .wp-header h1 { font-size: 42px; font-weight: 800; color: #fff; margin-bottom: 10px; }
+        .wp-header h1 span { color: var(--neon-green); }
+        .wp-header p { font-size: 18px; color: #8A94C8; }
+        .wp-header .version { display: inline-block; margin-top: 16px; background: rgba(0,255,127,0.1); padding: 4px 12px; border-radius: 20px; font-size: 12px; color: var(--neon-green); border: 1px solid var(--glass-border); }
+
+        .wp-section { margin-bottom: 50px; }
+        .wp-section h2 { font-size: 28px; color: #fff; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .wp-section h2 span { color: var(--neon-green); margin-right: 10px; }
+        .wp-section p { font-size: 16px; color: #C0C8F0; margin-bottom: 16px; }
+        .wp-section ul { list-style: none; padding-left: 0; }
+        .wp-section li { margin-bottom: 12px; padding-left: 24px; position: relative; color: #C0C8F0; }
+        .wp-section li::before { content: '🌱'; position: absolute; left: 0; top: 2px; font-size: 14px; }
+
+        .tokenomics-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        .tokenomics-table th, .tokenomics-table td { padding: 16px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .tokenomics-table th { color: var(--neon-green); font-size: 13px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+        .tokenomics-table td { font-size: 15px; color: #fff; }
+        .tokenomics-table td:last-child { text-align: right; font-weight: 700; color: var(--gold); }
+
+        .roadmap-grid { display: flex; flex-direction: column; gap: 20px; }
+        .roadmap-step { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px; padding: 24px; display: flex; gap: 20px; align-items: flex-start; }
+        .roadmap-step.active { border-color: var(--neon-green); background: rgba(0,255,127,0.05); }
+        .roadmap-icon { font-size: 32px; flex-shrink: 0; }
+        .roadmap-content h4 { font-size: 18px; color: #fff; margin-bottom: 6px; }
+        .roadmap-content p { font-size: 14px; color: #8A94C8; margin: 0; }
+        .roadmap-status { font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--neon-green); margin-top: 8px; display: block; }
+        .roadmap-status.pending { color: #8A94C8; }
+
+        .oil-link-box { background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border); border-radius: 16px; padding: 24px; margin-top: 20px; }
+        .oil-link-box a { color: var(--neon-green); text-decoration: none; font-weight: 700; }
+        .oil-link-box a:hover { text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            .header-inner { flex-direction: column; align-items: stretch; }
+            nav { justify-content: center; gap: 8px; }
+            nav a { font-size: 11px; }
+            .wp-header h1 { font-size: 32px; }
+            .roadmap-step { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-inner">
+        <div class="logo">
+            <img src="green_logo.png" alt="€GREEN" />
+            <span class="logo-text">EURO GREEN</span>
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="buy.html">Buy</a>
+            <a href="trade.html">Trade</a>
+            <a href="whitepaper.html" class="active">Whitepaper</a>
+        </nav>
+        <a href="buy.html" class="btn-primary">Buy €GREEN</a>
+    </div>
+</header>
+
+<section class="container">
+    
+    <div class="wp-header">
+        <img src="green_logo.png" alt="ECO Logo" onerror="this.src='green_hero_core.png'" />
+        <h1>Euro Green <span>(€GREEN)</span></h1>
+        <p>Ecological Foundation of the 123 Network</p>
+        <div class="version">Whitepaper v1.0 — November 2026</div>
+    </div>
+
+    <div class="wp-section">
+        <h2><span>01.</span> Abstract</h2>
+        <p>
+            Euro Green (€GREEN) is an institutional-grade, RWA-backed ESG asset deployed on the Solana blockchain. Built on the Token-2022 standard, €GREEN introduces a native on-chain "Green Audit" mechanism. By leveraging Transfer Hooks, every transaction is tracked for its carbon footprint, ensuring full compliance with modern ESG standards.
+        </p>
+        <p>
+            Unlike traditional "green" tokens that rely on promises, €GREEN is backed by verified carbon credits and physical forest reserves, providing a hard price floor and tangible value.
+        </p>
+    </div>
+
+    <div class="wp-section">
+        <h2><span>02.</span> The Oil & Gas Ecology Initiative</h2>
+        <p>
+            €GREEN directly funds the <strong>Oil & Gas Ecology Map</strong> — an open, verifiable database of gas flaring, methane leaks, spills, and fake reclamation projects worldwide. Using satellite data and on-chain verification, we expose environmental gaps and hold companies accountable.
+        </p>
+        <div class="oil-link-box">
+            <p style="margin-bottom:10px;">Explore the live database:</p>
+            <a href="https://ecologyoilgaz.github.io/oil/" target="_blank">🌍 View Oil & Gas Ecology Map →</a>
+        </div>
+    </div>
+
+    <div class="wp-section">
+        <h2><span>03.</span> Tokenomics</h2>
+        <p>The total supply of €GREEN is strictly limited to ensure scarcity and long-term value appreciation.</p>
+        
+        <table class="tokenomics-table">
+            <thead>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Token Name</td>
+                    <td>Euro Green</td>
+                </tr>
+                <tr>
+                    <td>Ticker</td>
+                    <td>€GREEN</td>
+                </tr>
+                <tr>
+                    <td>Total Supply</td>
+                    <td>8,889,000,000,000 (8.889T)</td>
+                </tr>
+                <tr>
+                    <td>Initial Price</td>
+                    <td>$0.01 USD</td>
+                </tr>
+                <tr>
+                    <td>Initial FDV</td>
+                    <td>$88.69T</td>
+                </tr>
+                <tr>
+                    <td>Standard</td>
+                    <td>Solana Token-2022</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="wp-section">
+        <h2><span>04.</span> Technology: Token-2022 & Green Audit</h2>
+        <p>
+            Standard SPL tokens on Solana are static. €GREEN utilizes <strong>Token-2022</strong> with the <strong>Transfer Hook</strong> extension. This means we have a smart contract that intercepts every transfer to calculate the carbon footprint and automatically route a percentage of network fees to verified carbon offset registries.
+        </p>
+    </div>
+
+    <div class="wp-section">
+        <h2><span>05.</span> Roadmap</h2>
+        <div class="roadmap-grid">
+            <div class="roadmap-step active">
+                <div class="roadmap-icon">🌱</div>
+                <div class="roadmap-content">
+                    <h4>Phase 1: Genesis (Current)</h4>
+                    <p>Token creation on Solana Token-2022. Launch of Meteora DAMM V2 liquidity pool. Whitepaper release. Community building.</p>
+                    <span class="roadmap-status">In Progress</span>
+                </div>
+            </div>
+            <div class="roadmap-step">
+                <div class="roadmap-icon">📊</div>
+                <div class="roadmap-content">
+                    <h4>Phase 2: Expansion</h4>
+                    <p>First RWA vault audit. Integration of the Carbon Offset Engine. Listing on Jupiter and OpenSea aggregators.</p>
+                    <span class="roadmap-status pending">Upcoming</span>
+                </div>
+            </div>
+            <div class="roadmap-step">
+                <div class="roadmap-icon">🏦</div>
+                <div class="roadmap-content">
+                    <h4>Phase 3: Institutionalization</h4>
+                    <p>Partnerships with ESG-focused institutional investors. Launch of the AI Governance for the Eco-Vault. Listing on major CEX.</p>
+                    <span class="roadmap-status pending">Future</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="index.html" style="color:var(--neon-green); text-decoration:none; font-weight:600;">← Back to Home</a>
+    </div>
+</section>
+
+</body>
+</html>
